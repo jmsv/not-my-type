@@ -1,0 +1,19 @@
+{
+  "name": "rfs-mern",
+  "version": "0.1.0",
+  "description": "flexitime tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "author": "James Vickery",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.1",
+    "password-generator": "^2.2.0"
+  }
+}
