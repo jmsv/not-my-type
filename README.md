@@ -23,22 +23,22 @@ The frontend will record keystroke events and send an object to the backend API 
         {
             "key": "r",
             "time": 0,
-            "event": "keydown"
+            "type": "keydown"
         },
         {
             "key": "r",
             "time": 24,
-            "event": "keyup"
+            "type": "keyup"
         },
         {
             "key": "j",
             "time": 67,
-            "event": "keydown"
+            "type": "keydown"
         },
         {
             "key": "j",
             "time": 81,
-            "event": "keyup"
+            "type": "keyup"
         }
     ]
 }
