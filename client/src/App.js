@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 
+import Typography from '@material-ui/core/Typography'
+
 import TypeyBox from './components/typey-box/TypeyBox'
 
 class App extends Component {
@@ -8,16 +10,12 @@ class App extends Component {
     typeyData: {}
   }
 
-  // handleChange = event => {
-  //   this.setState({ [event.target.name]: event.target.value })
-  // }
-
   render() {
     return (
       <div>
         <div className='App'>
-          <h1>Not My Type</h1>
-          <p>please mash at the keyboard in the box below</p>
+          <Typography variant="h2">u human?</Typography>
+          <p>pls click into the text box below and mash at the keyboard</p>
           <TypeyBox />
         </div>
       </div>
