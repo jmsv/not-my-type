@@ -15,6 +15,35 @@ The NodeJS+Express backend is in the root directory, and the React frontend is i
 
 To serve this in a production environment, run `npm run build` in the `client` directory and run the node server. The root `GET` endpoint serves the built `index.html` entry point.
 
+The frontend will record keystroke events and send an object to the backend API in the following format:
+
+```json
+{
+    "events": [
+        {
+            "key": "r",
+            "time": 0,
+            "event": "keydown"
+        },
+        {
+            "key": "r",
+            "time": 24,
+            "event": "keyup"
+        },
+        {
+            "key": "j",
+            "time": 67,
+            "event": "keydown"
+        },
+        {
+            "key": "j",
+            "time": 81,
+            "event": "keyup"
+        }
+    ]
+}
+```
+
 ## Future Ideas
 
 - Verify that text (e.g. YouTube comments or registration fields) were typed by a human, not a bot
