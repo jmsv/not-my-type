@@ -5,9 +5,14 @@ const processMash = require('./processMash')
 const loadTrainingData = require('./loadTrainingData')
 const trainingData = loadTrainingData()
 
-const generateTrainingMap = who => mash => ({
+const generateTrainingMapHuman = mash => ({
   input: processMash(mash.events),
-  output: { [who]: 1 }
+  output: { human: 1 }
+})
+
+const generateTrainingMapBot = mash => ({
+  input: processMash(mash.events),
+  output: { bot: 1 }
 })
 
 const startNetwork = () => {
@@ -16,11 +21,11 @@ const startNetwork = () => {
     hiddenLayers: [3]
   }
 
-  let net = new brain.NeuralNetwork()
+  let net = new brain.NeuralNetwork(config)
 
   net.train([
-    ...trainingData.human.map(generateTrainingMap('human')),
-    ...trainingData.bot.slice(0, 100).map(generateTrainingMap('bot'))
+    ...trainingData.human.map(generateTrainingMapHuman),
+    ...trainingData.bot.slice(0, trainingData.human.length).map(generateTrainingMapBot)
   ])
 
   return net

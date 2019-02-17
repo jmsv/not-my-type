@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 app.use('/api/detect', routeDetect)
 
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'))
 })
 
