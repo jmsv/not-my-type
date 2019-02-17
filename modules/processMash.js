@@ -16,12 +16,36 @@ const getKeyDistAvr = events => {
 const process = events => {
   // uses `events` to generate mathsy numbers
 
+  function spacebarFreq() {
+    let spacebarCount = 0;
+    for(let i = 0; i < testMash.length; i++) {
+      if(testMash[i].key === " "){
+        spacebarCount++
+      }
+    }
+    const spacebarFreq = spacebarCount / 100;
+    return spacebarFreq;
+  }
+
+  function usedKeys() {
+    let usedKeys = []
+    for(let i = 0; i < testMash.length; i++) {
+      if(!(usedKeys.includes(testMash[i].key))) {
+        usedKeys.push(testMash[i].key);
+      }
+    }
+    return usedKeys.length;
+  }
+
+
   return {
     timeDiffAvr: 0,
     timeDiffVariance: 0,
     keyDistanceAvr: getKeyDistAvr(events),
     keyDistanceAvrLeft: 0,
-    keyDistanceAvrRight: 0
+    keyDistanceAvrRight: 0,
+    spacebarFreq: spacebarFreq(),
+    usedKeys: usedKeys()
   }
 }
 
