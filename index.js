@@ -3,7 +3,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const network = require('./modules/neuralNetwork')
 const processMash = require('./modules/processMash')
-console.log(processMash);
 
 const app = express()
 
@@ -23,5 +22,4 @@ app.listen(port, () => {
   console.log(`listening on ${port}`)
   let trainedNetwork = network.startNetwork()
   let mash = processMash();
-  console.log(mash);
 })
