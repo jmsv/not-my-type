@@ -11,6 +11,11 @@ const generateTrainingMap = who => mash => ({
 })
 
 const startNetwork = () => {
+
+  const config = {
+    hiddenLayers: [3]
+  }
+
   let net = new brain.NeuralNetwork()
 
   net.train([
