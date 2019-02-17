@@ -1,17 +1,7 @@
-const keyboardDistance = require('./keyboardDistance')
+const { getKeyDistAvr } = require('./processKeyboardDistance')
 
 // `testMash` - a random mash from human/1 training data for testing `process` function
 const testMash = require('../training-data/human/1')[Math.floor(Math.random() * 40) + 0]
-
-const getKeyDistAvr = events => {
-  return events.reduce((acc, event, i) => {
-    if (i < events.length - 1) {
-      return acc + keyboardDistance(event.key, events[i + 1].key)
-    }
-
-    return acc
-  }, 0) / (events.length - 1)
-}
 
 const process = events => {
   // uses `events` to generate mathsy numbers
