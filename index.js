@@ -21,5 +21,5 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
   console.log(`listening on ${port}`)
   let trainedNetwork = network.startNetwork()
-  let mash = processMash();
+  let mash = processMash([])
 })
