@@ -1,4 +1,5 @@
-const { getKeyDistAvr } = require('./processKeyboardDistance')
+const preprocess = require('./preprocess')
+const { getKeyDistAvr, getLRKeyDists } = require('./processKeyboardDistance')
 
 // `testMash` - a random mash from human/1 training data for testing `process` function
 // const testMash = require('../training-data/human/1')[Math.floor(Math.random() * 40) + 0]
@@ -24,15 +25,22 @@ const usedKeys = currentMash => {
   return usedKeys.length
 }
 
-const process = events => ({
-  timeDiffAvr: 0,
-  timeDiffVariance: 0,
-  keyDistanceAvr: getKeyDistAvr(events),
-  keyDistanceAvrLeft: 0,
-  keyDistanceAvrRight: 0,
-  spacebarFreq: spacebarFreq(events),
-  usedKeys: usedKeys(events)
-})
+const process = events => {
+  events = preprocess(events)
+
+  const lRKeyDistAvrs = getLRKeyDists(events)
+
+  return {
+    // timeDiffAvr: 0,
+    // timeDiffVariance: 0,
+    keyDistanceAvr: getKeyDistAvr(events),
+    keyDistanceAvrLeft: lRKeyDistAvrs.left,
+    keyDistanceAvrRight: lRKeyDistAvrs.right,
+    keyDistanceAvrSideDiff: Math.abs(lRKeyDistAvrs.right - lRKeyDistAvrs.left),
+    spacebarFreq: spacebarFreq(events),
+    usedKeys: usedKeys(events)
+  }
+}
 
 // // test thing
 // console.log('processed events:', process(testMash.events))

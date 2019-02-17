@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextField, LinearProgress, Fab } from '@material-ui/core'
+import { TextField, LinearProgress, Fab, Paper, Typography } from '@material-ui/core'
 
 import { Save } from '@material-ui/icons'
 
@@ -111,7 +111,6 @@ export default class TaskList extends Component {
               <Save />&nbsp;Save Training Data
             </Fab>
           ) : ''}
-
         </div>
       </div>
     )

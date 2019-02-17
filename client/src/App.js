@@ -7,7 +7,7 @@ import TypeyBox from './components/typey-box/TypeyBox'
 
 class App extends Component {
   state = {
-    typeyData: {}
+
   }
 
   render() {
