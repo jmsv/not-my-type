@@ -1,5 +1,7 @@
 const brain = require('brain.js')
 
+const processMash = require('./processMash')
+
 module.exports = {
   startNetwork () {
     let net = new brain.NeuralNetwork()
