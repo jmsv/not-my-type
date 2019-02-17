@@ -27,23 +27,25 @@ const usedKeys = currentMash => {
 
 const timeDiffAverage = currentMash => {
 
-  let averageTime = 0;
+  let averageTimes = [];
   let currentIndex = 0;
   let completeKeystrokes = 0;
   currentMash.forEach(element => {
     if(element.type === "keydown") {
       for(let i = currentIndex; i < currentMash.length-1; i++) {
         if(currentMash[i].key === element.key && currentMash[i].type === "keyup") {
-          averageTime = averageTime + (currentMash[i].time - element.time);
-          completeKeystrokes++;
+          averageTimes.push(currentMash[i].time - element.time);
 
         }
       }
     }
     currentIndex++;
   });
-  averageTime = Math.round(averageTime / completeKeystrokes);
-  return averageTime;
+  const largest = Math.max(...averageTimes);
+  let overallAverage = averageTimes.reduce((a, b) => a + b, 0);
+  overallAverage = (overallAverage /averageTimes.length) /largest;
+
+  return overallAverage;
 
 }
 
