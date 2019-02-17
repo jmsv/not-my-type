@@ -25,13 +25,35 @@ const usedKeys = currentMash => {
   return usedKeys.length
 }
 
+const timeDiffAverage = currentMash => {
+
+  let averageTime = 0;
+  let currentIndex = 0;
+  let completeKeystrokes = 0;
+  currentMash.forEach(element => {
+    if(element.type === "keydown") {
+      for(let i = currentIndex; i < currentMash.length-1; i++) {
+        if(currentMash[i].key === element.key && currentMash[i].type === "keyup") {
+          averageTime = averageTime + (currentMash[i].time - element.time);
+          completeKeystrokes++;
+
+        }
+      }
+    }
+    currentIndex++;
+  });
+  averageTime = Math.round(averageTime / completeKeystrokes);
+  return averageTime;
+
+}
+
 const process = events => {
   events = preprocess(events)
 
   const lRKeyDistAvrs = getLRKeyDists(events)
 
   return {
-    // timeDiffAvr: 0,
+    timeDiffAvr: timeDiffAverage(events),
     // timeDiffVariance: 0,
     keyDistanceAvr: getKeyDistAvr(events),
     keyDistanceAvrLeft: lRKeyDistAvrs.left,
