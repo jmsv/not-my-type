@@ -1,5 +1,6 @@
 const preprocess = require('./preprocess')
 const { getKeyDistAvr, getLRKeyDists } = require('./processKeyboardDistance')
+const { getRowFrequencies } = require('./keyboardRowFrequency')
 
 // `testMash` - a random mash from human/1 training data for testing `process` function
 // const testMash = require('../training-data/human/1')[Math.floor(Math.random() * 40) + 0]
@@ -30,16 +31,26 @@ const process = events => {
 
   const lRKeyDistAvrs = getLRKeyDists(events)
 
-  return {
+  const rowFreq = getRowFrequencies(events)
+
+  const result = {
     // timeDiffAvr: 0,
     // timeDiffVariance: 0,
     keyDistanceAvr: getKeyDistAvr(events),
     keyDistanceAvrLeft: lRKeyDistAvrs.left,
     keyDistanceAvrRight: lRKeyDistAvrs.right,
     keyDistanceAvrSideDiff: Math.abs(lRKeyDistAvrs.right - lRKeyDistAvrs.left),
-    spacebarFreq: spacebarFreq(events),
+    rowFreq0: rowFreq[0],
+    rowFreq1: rowFreq[1],
+    rowFreq2: rowFreq[2],
+    rowFreq3: rowFreq[3],
+    // spacebarFreq: spacebarFreq(events),
     usedKeys: usedKeys(events)
   }
+
+  // console.log('processed event :', result)
+
+  return result
 }
 
 // // test thing
