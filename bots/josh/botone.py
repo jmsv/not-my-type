@@ -25,15 +25,16 @@ json
 }
 '''
 
-def fullgen(data, count):
+def datagen(data, count):
+    data = {}
     data['key'] = genkey()
     data['time'] = gentime(count)
     data['type'] = gentype()
-    return(json.dumps(data))
+    return(data)
 
-def gentime(lasttime):
-    increment = 0.2
-    return (lasttime + increment)
+def gentime(count):
+    increment = 20
+    return (count*increment)
 
 def genkey():
     keys = list(string.ascii_lowercase)
@@ -45,8 +46,25 @@ def gentype():
     else:
         return("keydown")
 
-count = 0
-while count < 10:
-    events.append(fullgen(keypress,count))
-    count+=1
-print(events)
+def eventgen():
+    num = 100
+    count = 0
+    while count < num:
+        events.append(datagen(keypress,count))
+        count+=1
+    return(events)
+
+def datasetgen(num):
+    count = 0
+    data = []
+    while count < num:
+        data.append(eventgen())
+        count+=1
+    return(data)
+
+filename = "dataone.txt"
+f = open(filename, "w+")
+jsondata=json.dumps(datasetgen(10))
+print(jsondata)
+f.write(jsondata)
+f.close()
