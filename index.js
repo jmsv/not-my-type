@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const network = require('./modules/neuralNetwork')
+const processMash = require('./modules/processMash')
+console.log(processMash);
 
 const app = express()
 
@@ -20,4 +22,6 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
   console.log(`listening on ${port}`)
   let trainedNetwork = network.startNetwork()
+  let mash = processMash();
+  console.log(mash);
 })
