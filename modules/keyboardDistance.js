@@ -57,13 +57,11 @@ const keyCoords = {
   ' ': [7 * xo, yo * 4]
 }
 
-const getDistance = (x, y) => {
+const getDistance = (letterA, letterB) => {
   return Math.sqrt(
-    Math.pow(keyCoords[x][0] - keyCoords[y][0], 2) +
-    Math.pow(keyCoords[x][1] - keyCoords[y][1], 2)
+    Math.pow(keyCoords[letterA][0] - keyCoords[letterB][0], 2) +
+    Math.pow(keyCoords[letterA][1] - keyCoords[letterB][1], 2)
   ) / 25
 }
-
-console.log('bigg', getDistance('`', 'h'))
 
 module.exports = getDistance
