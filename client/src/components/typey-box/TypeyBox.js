@@ -5,6 +5,8 @@ import { Save } from '@material-ui/icons'
 
 import downloadFile from 'js-file-download'
 
+import axios from 'axios'
+
 import './TypeyBox.css'
 
 const mashTargetLength = 100
@@ -15,7 +17,8 @@ export default class TaskList extends Component {
     done: false,
     startTime: null,
     mashVal: '',
-    eventsCollection: []
+    eventsCollection: [],
+    humanLog: []
   }
 
   getEventTime = () => {
@@ -50,6 +53,11 @@ export default class TaskList extends Component {
       done: true,
       mashVal: ''
     })
+
+    axios.post('/api/detect', this.state.events)
+      .then(res => {
+        this.setState({ humanLog: [res.data.human, ...this.state.humanLog] })
+      })
 
     this.setState({ eventsCollection: [...this.state.eventsCollection, { events: this.state.events }] }, () => {
       this.setState({ events: [] })
@@ -96,6 +104,18 @@ export default class TaskList extends Component {
 
         <LinearProgress color="primary" variant="determinate" value={this.mashProgress()} />
 
+        {this.state.humanLog.map(log => {
+          return <Paper style={{
+            padding: 8,
+            marginTop: 16,
+            marginBottom: 16,
+            backgroundColor: log ? '#aced8e' : '#ea8c8c'
+          }}>
+          <Typography variant='body1'>you are{log ? ' human!' : ' a bot :('}</Typography>
+        </Paper>
+        })}
+
+        <hr style={{margin: '32px 0'}} />
         <div style={{textAlign: 'center', margin: 16}}>
           mashes recorded: {this.state.eventsCollection.length}
         </div>

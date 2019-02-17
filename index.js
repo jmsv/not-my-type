@@ -8,14 +8,22 @@ const app = express()
 
 const routeDetect = require('./routes/detect')
 
+console.log('generating network...')
+let trainedNetwork = network.startNetwork()
+console.log('...network running')
+
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(bodyParser.json())
 
 app.post('/api/detect', (req, res) => {
-  const { mash } = req.body
-  const m = processMash(mash.events)
+  const mash = req.body
+  const m = processMash(mash)
 
-  res.json({ human: trainedNetwork.run(m).human > 0.5 })
+  console.log('m :', m)
+
+  console.log('trainedNetwork.run(m) :', trainedNetwork.run(m))
+
+  res.json({ human: trainedNetwork.run(m).human > 0.1 })
 })
 
 app.get('*', (_, res) => {
@@ -23,10 +31,6 @@ app.get('*', (_, res) => {
 })
 
 const port = process.env.PORT || 5000
-
-// console.log('generating network...')
-// let trainedNetwork = network.startNetwork()
-// console.log('...network running')
 
 // console.log('HUMAN TEST')
 // const someHuman = require('./training-data/test-data/james1.json')
