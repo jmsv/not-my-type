@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "brain.js": "^1.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.1",
     "password-generator": "^2.2.0"
