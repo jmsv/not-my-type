@@ -11,7 +11,12 @@ const routeDetect = require('./routes/detect')
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(bodyParser.json())
 
-app.use('/api/detect', routeDetect)
+app.post('/api/detect', (req, res) => {
+  const { mash } = req.body
+  const m = processMash(mash.events)
+
+  res.json({ human: trainedNetwork.run(m).human > 0.5 })
+})
 
 app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'))
@@ -19,25 +24,25 @@ app.get('*', (_, res) => {
 
 const port = process.env.PORT || 5000
 
-console.log('generating network...')
-let trainedNetwork = network.startNetwork()
-console.log('...network running')
+// console.log('generating network...')
+// let trainedNetwork = network.startNetwork()
+// console.log('...network running')
 
-console.log('HUMAN TEST')
-const someHuman = require('./training-data/test-data/james1.json')
-const humanResults = someHuman.map(m => {
-  const mash = processMash(m.events)
-  return trainedNetwork.run(mash)
-})
-console.log('HUMAN results :', humanResults)
+// console.log('HUMAN TEST')
+// const someHuman = require('./training-data/test-data/james1.json')
+// const humanResults = someHuman.map(m => {
+//   const mash = processMash(m.events)
+//   return trainedNetwork.run(mash)
+// })
+// console.log('HUMAN results :', humanResults)
 
-console.log('BOT TEST')
-const someBot = require('./training-data/bot/1').slice(300, 327)
-const botResults = someBot.map(m => {
-  const mash = processMash(m.events)
-  return trainedNetwork.run(mash)
-})
-console.log('BOT results :', botResults)
+// console.log('BOT TEST')
+// const someBot = require('./training-data/bot/1').slice(300, 327)
+// const botResults = someBot.map(m => {
+//   const mash = processMash(m.events)
+//   return trainedNetwork.run(mash)
+// })
+// console.log('BOT results :', botResults)
 
 app.listen(port, () => {
   console.log(`listening on ${port}`)

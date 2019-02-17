@@ -56,18 +56,18 @@ const process = events => {
   const rowFreq = getRowFrequencies(events)
 
   return {
-    timeDiffAvr: timeDiffAverage(events),
+    // timeDiffAvr: timeDiffAverage(events),
     // timeDiffVariance: 0,
     keyDistanceAvr: getKeyDistAvr(events),
-    keyDistanceAvrLeft: lRKeyDistAvrs.left,
-    keyDistanceAvrRight: lRKeyDistAvrs.right,
+    // keyDistanceAvrLeft: lRKeyDistAvrs.left,
+    // keyDistanceAvrRight: lRKeyDistAvrs.right,
     keyDistanceAvrSideDiff: Math.abs(lRKeyDistAvrs.right - lRKeyDistAvrs.left),
     rowFreq0: rowFreq[0],
     rowFreq1: rowFreq[1],
-    rowFreq2: rowFreq[2],
-    rowFreq3: rowFreq[3],
+    // rowFreq2: rowFreq[2],
+    // rowFreq3: rowFreq[3],
     // spacebarFreq: spacebarFreq(events),
-    usedKeys: usedKeys(events)
+    // usedKeys: usedKeys(events)
   }
 
   // console.log('processed event :', result)

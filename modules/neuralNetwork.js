@@ -18,7 +18,7 @@ const generateTrainingMapBot = mash => ({
 const startNetwork = () => {
 
   const config = {
-    hiddenLayers: [3]
+    hiddenLayers: [10]
   }
 
   let net = new brain.NeuralNetwork(config)
@@ -27,6 +27,11 @@ const startNetwork = () => {
     ...trainingData.human.map(generateTrainingMapHuman),
     ...trainingData.bot.slice(0, trainingData.human.length).map(generateTrainingMapBot)
   ])
+
+  // net.train([
+  //   trainingData.human.map(generateTrainingMapHuman)
+  //   trainingData.bot.slice(0, trainingData.human.length).map(generateTrainingMapBot)
+  // ])
 
   return net
 }
