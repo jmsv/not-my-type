@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <div>
         <div className='App'>
+          <Typography variant="overline">Not My Type -- captcha</Typography>
           <Typography variant="h2">u human?</Typography>
           <p>pls click into the text box below and mash at the keyboard</p>
           <TypeyBox />

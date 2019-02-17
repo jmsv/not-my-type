@@ -116,9 +116,9 @@ export default class TaskList extends Component {
         })}
 
         <hr style={{margin: '32px 0'}} />
-        <div style={{textAlign: 'center', margin: 16}}>
+        {/* <div style={{textAlign: 'center', margin: 16}}>
           mashes recorded: {this.state.eventsCollection.length}
-        </div>
+        </div> */}
 
         <div style={{ textAlign: 'center' }}>
           {this.state.eventsCollection.length ? (

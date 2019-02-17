@@ -23,7 +23,7 @@ app.post('/api/detect', (req, res) => {
 
   console.log('trainedNetwork.run(m) :', trainedNetwork.run(m))
 
-  res.json({ human: trainedNetwork.run(m).human > 0.1 })
+  res.json({ human: trainedNetwork.run(m).human > 0.08 })
 })
 
 app.get('*', (_, res) => {

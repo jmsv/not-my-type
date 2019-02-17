@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build",
+    "prod": "npm install --prefix client && npm run build --prefix client && npm install && node index.js"
   },
   "author": "James Vickery",
   "license": "ISC",
