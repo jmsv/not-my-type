@@ -5,8 +5,7 @@ keypress = {}
 events= []
 '''
 json
-{"events": [{"key": "r","time": 0,"event": "keydown"},
-        {
+{"events": [{"key": "r","time": 0,"event": "keydown"},{
             "key": "r",
             "time": 24,
             "event": "keyup"
@@ -47,7 +46,7 @@ def gentype():
         return("keydown")
 
 def eventgen():
-    num = 100
+    num = 2
     count = 0
     while count < num:
         events.append(datagen(keypress,count))
@@ -64,7 +63,7 @@ def datasetgen(num):
 
 filename = "dataone.txt"
 f = open(filename, "w+")
-jsondata=json.dumps(datasetgen(10))
+jsondata=json.dumps(datasetgen(2),sort_keys=False, indent=2)
 print(jsondata)
 f.write(jsondata)
 f.close()
